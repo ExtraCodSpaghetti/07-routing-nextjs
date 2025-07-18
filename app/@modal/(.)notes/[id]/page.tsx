@@ -6,14 +6,13 @@ import {
 import { fetchNoteById } from '../../../../lib/api';
 import NotePreview from './NotePreview.client';
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-export default async function NoteModalPage({ params }: Props) {
+export default async function NoteModalPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = params;
+
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
