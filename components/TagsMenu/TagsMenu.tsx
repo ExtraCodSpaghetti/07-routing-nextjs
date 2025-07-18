@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { getCategories } from '@/lib/api';
 import css from './TagsMenu.module.css';
 import { useState } from 'react';
 

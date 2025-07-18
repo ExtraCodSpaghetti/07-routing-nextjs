@@ -20,7 +20,7 @@ export default function NoteList({ notes }: NoteListProps) {
   });
 
   const handleDelete = (id: number) => {
-    mutation.mutate(id.toString());
+    mutation.mutate(id);
   };
 
   if (!notes.length) return null;
