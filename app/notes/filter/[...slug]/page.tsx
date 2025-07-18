@@ -8,7 +8,7 @@ type Props = {
 
 export default async function NotesPage({ params }: Props) {
   // Добавляем "await" для параметров (это обязательно в Next.js 14)
-  const { slug } = await Promise.resolve(params);
+  const { slug } = params;
 
   const queryClient = new QueryClient();
 
@@ -21,7 +21,6 @@ export default async function NotesPage({ params }: Props) {
     queryKey: ['notes', 1, '', tag],
     queryFn: () => Promise.resolve(data),
   });
-  console.log('NotesClient component:', NotesClient); // Должна вывести функцию, а не объект
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
@@ -29,4 +28,3 @@ export default async function NotesPage({ params }: Props) {
     </HydrationBoundary>
   );
 }
-console.log('NotesClient component:', NotesClient); // Должна вывести функцию, а не объект
