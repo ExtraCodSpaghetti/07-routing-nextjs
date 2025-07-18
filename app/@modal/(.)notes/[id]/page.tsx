@@ -11,9 +11,9 @@ type NotePreviewProps = {
 };
 
 export default async function NoteModalPage({ params }: NotePreviewProps) {
-  const queryClient = new QueryClient();
-
-  const { id } = params;
+    
+    const { id } = params;
+    const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({
     queryKey: ['note', id],
