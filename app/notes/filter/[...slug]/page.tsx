@@ -7,7 +7,6 @@ type Props = {
 };
 
 export default async function NotesPage({ params }: Props) {
-  // Добавляем "await" для параметров (это обязательно в Next.js 14)
   const { slug } = params;
 
   const queryClient = new QueryClient();
