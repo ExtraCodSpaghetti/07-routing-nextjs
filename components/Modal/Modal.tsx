@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useCallback } from "react"
 
 type ModalProps = {
-  children: ReactNode;
+  children: ReactNode; // The content to be displayed inside the modal
   onClose?: () => void;
 }
 
 const Modal = ({ children, onClose }: ModalProps) => {
-   const router = useRouter();
+   const router = useRouter(); // Hook to access the router for navigation
 
  const handleClose = useCallback(() => {
     if (onClose) {

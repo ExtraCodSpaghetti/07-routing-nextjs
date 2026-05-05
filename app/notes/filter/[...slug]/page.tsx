@@ -1,15 +1,15 @@
 import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
 import { fetchNotes } from '../../../../lib/api';
 import NotesClient from './NotesClient';
-import { JSX } from 'react/jsx-runtime';
 
-export default (async function NotesPage({
+export default async function NotesPage({
   params,
 }: {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 }) {
+  const { slug } = await params;
   const queryClient = new QueryClient();
-  const rawTag = params.slug?.[0] || '';
+  const rawTag = slug?.[0] || '';
   const tag = rawTag.toLowerCase() === 'all' ? '' : rawTag;
   const data = await fetchNotes(1, 12, '', tag);
   await queryClient.prefetchQuery({
@@ -21,4 +21,4 @@ export default (async function NotesPage({
       <NotesClient initialData={data} tag={tag} />
     </HydrationBoundary>
   );
-}) as unknown as (props: { params: { slug: string[] } }) => Promise<JSX.Element>;
+}

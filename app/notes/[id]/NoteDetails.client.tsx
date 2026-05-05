@@ -8,17 +8,17 @@ const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
   
 
-  const { data: note, isLoading, error } = useQuery({
-    queryKey: ["note", id],
-    queryFn: () => fetchNoteById(id),
-    refetchOnMount: false,
+  const { data: note, isLoading, error } = useQuery({ // 1. Используем хук useQuery для получения данных заметки по id
+    queryKey: ["note", id], // 2. Уникальный ключ для кэширования данных заметки
+    queryFn: () => fetchNoteById(id), // 3. Функция для получения данных заметки по id
+    refetchOnMount: false, // 4. Не перезапрашивать данные при каждом монтировании компонента
   });
 
   if (isLoading) return <p>Loading, please wait...</p>;
 
   if (error || !note) return <p>Something went wrong.</p>;
 
-  const formattedDate = note.updatedAt
+  const formattedDate = note.updatedAt // 5. Форматируем дату в зависимости от наличия updatedAt
     ? `Updated at: ${note.updatedAt}`
     : `Created at: ${note.createdAt}`;
 
